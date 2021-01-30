@@ -1,25 +1,25 @@
 import React, { Component } from "react"
-import { Form, Input, Button ,message} from "antd"
+import { Form, Input, Button, message } from "antd"
 import { UserOutlined, LockOutlined } from "@ant-design/icons"
 
-import ajax from '../../api/ajax'
-import user from '../../utils/userSaveMemory'
-import {steStore} from '../../utils/userSaveStorage'
-import logo from "./img/logo.png"
+import ajax from "../../api/ajax"
+import user from "../../utils/userSaveMemory"
+import { steStore } from "../../utils/userSaveStorage"
+import logo from "../../assets/img/logo.png"
 import "./css/login.less"
 export default class Login extends Component {
 	// 点击登录的回调函数
-    handleLogin= async (values)=>{
-        let res = await ajax('/login',values,'POST')
-        if(res.status !== 0) {
-            return message.error(res.msg)
-        }
-        user.userInfo = res.data
-        steStore(res.data)
-      
-        this.props.history.replace('/')
-        message.success('登陆成功')
-        }
+	handleLogin = async (values) => {
+		let res = await ajax("/login", values, "POST")
+		if (res.status !== 0) {
+			return message.error(res.msg)
+		}
+		user.userInfo = res.data
+		steStore(res.data)
+
+		this.props.history.replace("/")
+		message.success("登陆成功")
+	}
 	render() {
 		return (
 			<div className='login'>
@@ -32,34 +32,35 @@ export default class Login extends Component {
 					<Form
 						name='normal_login'
 						className='login-form'
-                        validateTrigger='onBlur'
-                        onFinish={this.handleLogin}
+						validateTrigger='onBlur'
+						onFinish={this.handleLogin}
 					>
 						<Form.Item
-                                                validateFirst={true}
-
+							validateFirst={true}
 							name='username'
 							rules={[
 								{ required: true, message: "请输入用户名" },
 								{
 									validator: (_, value) => {
-                                        
-                                            var reg = /^[\u4e00-\u9fa5a-z\d_]{2,}$/gi
-                                            var reg2 =/[\u4e00-\u9fa5]+/g
-                                            if(!reg2.test(value)){
-                                                if (reg.test(value)) {
-                                                    var len = value.length
-                                                    if (len < 4 || len > 12) {
-                                                        return Promise.reject('只能输入数字、字母、下划线,且长度在4-12')
-                                                    }
-                                                return Promise.resolve()
-                                                }
-                                                return Promise.reject('只能输入数字、字母、下划线,且长度在4-12')
-                                            }
-                                            return Promise.reject('只能输入数字、字母、下划线,且长度在4-12')
-                                            
-                                       
-                                       
+										var reg = /^[\u4e00-\u9fa5a-z\d_]{2,}$/gi
+										var reg2 = /[\u4e00-\u9fa5]+/g
+										if (!reg2.test(value)) {
+											if (reg.test(value)) {
+												var len = value.length
+												if (len < 4 || len > 12) {
+													return Promise.reject(
+														"只能输入数字、字母、下划线,且长度在4-12"
+													)
+												}
+												return Promise.resolve()
+											}
+											return Promise.reject(
+												"只能输入数字、字母、下划线,且长度在4-12"
+											)
+										}
+										return Promise.reject(
+											"只能输入数字、字母、下划线,且长度在4-12"
+										)
 									},
 								},
 							]}
@@ -75,30 +76,31 @@ export default class Login extends Component {
 							/>
 						</Form.Item>
 						<Form.Item
-                                                                        validateFirst={true}
-
+							validateFirst={true}
 							name='password'
 							rules={[
 								{ required: true, message: "请输入密码" },
 								{
 									validator: (_, value) => {
-                                       
-                                            var reg = /^[\u4e00-\u9fa5a-z\d_]{2,}$/gi
-                                            var reg2 =/[\u4e00-\u9fa5]+/g
-                                            if(!reg2.test(value)){
-                                                if (reg.test(value)) {
-                                                    var len = value.length
-                                                    if (len < 4 || len > 12) {
-                                                        return Promise.reject('只能输入数字、字母、下划线,且长度在4-12')
-                                                    }
-                                                return Promise.resolve()
-                                                }
-                                                return Promise.reject('只能输入数字、字母、下划线,且长度在4-12')
-                                            }
-                                            return Promise.reject('只能输入数字、字母、下划线,且长度在4-12')
-                                            
-                                        
-                                       
+										var reg = /^[\u4e00-\u9fa5a-z\d_]{2,}$/gi
+										var reg2 = /[\u4e00-\u9fa5]+/g
+										if (!reg2.test(value)) {
+											if (reg.test(value)) {
+												var len = value.length
+												if (len < 4 || len > 12) {
+													return Promise.reject(
+														"只能输入数字、字母、下划线,且长度在4-12"
+													)
+												}
+												return Promise.resolve()
+											}
+											return Promise.reject(
+												"只能输入数字、字母、下划线,且长度在4-12"
+											)
+										}
+										return Promise.reject(
+											"只能输入数字、字母、下划线,且长度在4-12"
+										)
 									},
 								},
 							]}
