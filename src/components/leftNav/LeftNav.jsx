@@ -6,7 +6,7 @@ import menuList from "../../config/menuList"
 import "./css/leftNav.less"
 
 const IconFont = createFromIconfontCN({
-	scriptUrl: "//at.alicdn.com/t/font_2357508_55a7f3zs585.js",
+	scriptUrl: "//at.alicdn.com/t/font_2357508_dtut1bryym.js",
 })
 
 const { SubMenu } = Menu
@@ -49,7 +49,6 @@ class LeftNav extends Component {
 	}
 	render() {
 		let currentlySelected = this.props.history.location.pathname
-		console.log(currentlySelected)
 
 		return (
 			<div className='leftMenu'>
